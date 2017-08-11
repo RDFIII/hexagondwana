@@ -2,6 +2,8 @@
 
 shimmerMeloArray = [];
 meloArray = [];
+oooArray = [];
+triforceArray = [];
 
 currentTheme = 0;
 
@@ -41,6 +43,42 @@ function preload() {
 	sound15 = loadSound('audio/shimmer_melo_flute/15.mp3');
 	sound16 = loadSound('audio/shimmer_melo_flute/16.mp3');
 	shimmerMeloArray.push(sound1, sound2, sound3, sound4, sound5, sound6, sound7, sound8, sound9, sound10, sound11, sound12, sound13, sound14, sound15, sound16);
+
+	sound1 = loadSound('audio/ooo/1.mp3');
+	sound2 = loadSound('audio/ooo/2.mp3');
+	sound3 = loadSound('audio/ooo/3.mp3');
+	sound4 = loadSound('audio/ooo/4.mp3');
+	sound5 = loadSound('audio/ooo/5.mp3');
+	sound6 = loadSound('audio/ooo/6.mp3');
+	sound7 = loadSound('audio/ooo/7.mp3');
+	sound8 = loadSound('audio/ooo/8.mp3');
+	sound9 = loadSound('audio/ooo/9.mp3');
+	sound10 = loadSound('audio/ooo/10.mp3');
+	sound11 = loadSound('audio/ooo/11.mp3');
+	sound12 = loadSound('audio/ooo/12.mp3');
+	sound13 = loadSound('audio/ooo/13.mp3');
+	sound14 = loadSound('audio/ooo/14.mp3');
+	sound15 = loadSound('audio/ooo/15.mp3');
+	sound16 = loadSound('audio/ooo/16.mp3');
+	oooArray.push(sound1, sound2, sound3, sound4, sound5, sound6, sound7, sound8, sound9, sound10, sound11, sound12, sound13, sound14, sound15, sound16);
+
+	sound1 = loadSound('audio/triforce/1.mp3');
+	sound2 = loadSound('audio/triforce/2.mp3');
+	sound3 = loadSound('audio/triforce/3.mp3');
+	sound4 = loadSound('audio/triforce/4.mp3');
+	sound5 = loadSound('audio/triforce/5.mp3');
+	sound6 = loadSound('audio/triforce/6.mp3');
+	sound7 = loadSound('audio/triforce/7.mp3');
+	sound8 = loadSound('audio/triforce/8.mp3');
+	sound9 = loadSound('audio/triforce/9.mp3');
+	sound10 = loadSound('audio/triforce/10.mp3');
+	sound11 = loadSound('audio/triforce/11.mp3');
+	sound12 = loadSound('audio/triforce/12.mp3');
+	sound13 = loadSound('audio/triforce/13.mp3');
+	sound14 = loadSound('audio/triforce/14.mp3');
+	sound15 = loadSound('audio/triforce/15.mp3');
+	sound16 = loadSound('audio/triforce/16.mp3');
+	triforceArray.push(sound1, sound2, sound3, sound4, sound5, sound6, sound7, sound8, sound9, sound10, sound11, sound12, sound13, sound14, sound15, sound16);
 }
 
 
@@ -49,9 +87,8 @@ function preload() {
 const themes = [
   [shimmerMeloArray, "#47d147", "#660066", "#990099"],
   [meloArray, "#3385ff", "#e6f0ff", "#cce0ff"],
-  [shimmerMeloArray, "#666699", "#29293d", "#e60000"],
-  [shimmerMeloArray, "#ff00ff", "#ffb3b3", "#ff00ff"]
-
+  [oooArray, "#666699", "#29293d", "#e60000"],
+  [triforceArray, "#ff00ff", "#ffb3b3", "#ff00ff"]
 ]
 
 
