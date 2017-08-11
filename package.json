@@ -1,21 +1,14 @@
 {
-  "name": "rdf",
+  "name": "hexagondwana",
   "version": "1.0.0",
-  "description": "",
-  "main": "intro-lecture.js",
-  "dependencies": {
-    "express": "^4.15.4",
-    "grunt": "^1.0.1",
-    "jquery": "^3.2.1",
-    "matter-js": "^0.13.0",
-    "nw": "^0.24.1",
-    "p5": "^0.5.11",
-    "web-audio-api": "^0.2.2"
-  },
-  "devDependencies": {},
+  "description": "hexagondwana sequencer",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "dependencies": {
+   "express": "~5.3.0"
+ },
+  "author": "Richard Foulkes",
   "license": "ISC"
 }
