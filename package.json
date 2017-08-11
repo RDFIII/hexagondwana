@@ -1,6 +1,9 @@
 {
   "name": "hexagondwana",
   "version": "1.0.0",
+  "engines": {
+    "node": "8.2.1"
+  },
   "description": "hexagondwana sequencer",
   "main": "server.js",
   "scripts": {
