@@ -1,0 +1,10 @@
+{
+  "name": "hexagondwana",
+  "description": "hexagondwana sequencer",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+  }
+}
