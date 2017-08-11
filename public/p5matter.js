@@ -1,35 +1,29 @@
 // Hexagondwana
 
-soundArray = []
+shimmerMeloArray = [];
+meloArray = [];
 
-// function preload() {
-//   sound1 = loadSound('audio/melo_flute/1.mp3');
-// 	sound2 = loadSound('audio/melo_flute/2.mp3');
-// 	sound3 = loadSound('audio/melo_flute/3.mp3');
-// 	sound4 = loadSound('audio/melo_flute/4.mp3');
-// 	sound5 = loadSound('audio/melo_flute/5.mp3');
-// 	sound6 = loadSound('audio/melo_flute/6.mp3');
-// 	sound7 = loadSound('audio/melo_flute/7.mp3');
-// 	sound8 = loadSound('audio/melo_flute/8.mp3');
-// 	sound9 = loadSound('audio/melo_flute/9.mp3');
-// 	sound10 = loadSound('audio/melo_flute/10.mp3');
-// 	sound11 = loadSound('audio/melo_flute/11.mp3');
-// 	sound12 = loadSound('audio/melo_flute/12.mp3');
-// 	sound13 = loadSound('audio/melo_flute/13.mp3');
-// 	sound14 = loadSound('audio/melo_flute/14.mp3');
-// 	sound15 = loadSound('audio/melo_flute/15.mp3');
-// 	sound16 = loadSound('audio/melo_flute/16.mp3');
-// 	sound17 = loadSound('audio/melo_flute/17.mp3');
-// 	sound18 = loadSound('audio/melo_flute/18.mp3');
-// 	sound19 = loadSound('audio/melo_flute/19.mp3');
-// 	sound20 = loadSound('audio/melo_flute/20.mp3');
-// 	sound21 = loadSound('audio/melo_flute/21.mp3');
-// 	sound22 = loadSound('audio/melo_flute/22.mp3');
-// 	sound23 = loadSound('audio/melo_flute/23.mp3');
-// 	soundArray.push(sound1, sound2, sound3, sound4, sound5, sound6, sound7, sound8, sound9, sound10, sound11, sound12, sound13, sound14, sound15, sound16, sound17, sound18, sound19, sound20, sound21, sound22, sound23);
-// }
+currentTheme = 0;
 
 function preload() {
+	sound1 = loadSound('audio/melo_flute/5.mp3');
+	sound2 = loadSound('audio/melo_flute/6.mp3');
+	sound3 = loadSound('audio/melo_flute/7.mp3');
+	sound4 = loadSound('audio/melo_flute/8.mp3');
+	sound5 = loadSound('audio/melo_flute/9.mp3');
+	sound6 = loadSound('audio/melo_flute/10.mp3');
+	sound7 = loadSound('audio/melo_flute/11.mp3');
+	sound8 = loadSound('audio/melo_flute/12.mp3');
+	sound9 = loadSound('audio/melo_flute/13.mp3');
+	sound10 = loadSound('audio/melo_flute/14.mp3');
+	sound11 = loadSound('audio/melo_flute/15.mp3');
+	sound12 = loadSound('audio/melo_flute/16.mp3');
+	sound13 = loadSound('audio/melo_flute/17.mp3');
+	sound14 = loadSound('audio/melo_flute/18.mp3');
+	sound15 = loadSound('audio/melo_flute/19.mp3');
+	sound16 = loadSound('audio/melo_flute/20.mp3');
+	meloArray.push(sound1, sound2, sound3, sound4, sound5, sound6, sound7, sound8, sound9, sound10, sound11, sound12, sound13, sound14, sound15, sound16);
+
   sound1 = loadSound('audio/shimmer_melo_flute/1.mp3');
 	sound2 = loadSound('audio/shimmer_melo_flute/2.mp3');
 	sound3 = loadSound('audio/shimmer_melo_flute/3.mp3');
@@ -46,11 +40,22 @@ function preload() {
 	sound14 = loadSound('audio/shimmer_melo_flute/14.mp3');
 	sound15 = loadSound('audio/shimmer_melo_flute/15.mp3');
 	sound16 = loadSound('audio/shimmer_melo_flute/16.mp3');
-	soundArray.push(sound1, sound2, sound3, sound4, sound5, sound6, sound7, sound8, sound9, sound10, sound11, sound12, sound13, sound14, sound15, sound16);
+	shimmerMeloArray.push(sound1, sound2, sound3, sound4, sound5, sound6, sound7, sound8, sound9, sound10, sound11, sound12, sound13, sound14, sound15, sound16);
 }
 
 
-let ballRadius = 10;
+// soundArray, background color, color, hover color
+// good color #6666ff blue for theme[1] background or #3385ff
+const themes = [
+  [shimmerMeloArray, "#47d147", "#660066", "#990099"],
+  [meloArray, "#3385ff", "#e6f0ff", "#cce0ff"],
+  [shimmerMeloArray, "#666699", "#29293d", "#e60000"],
+  [shimmerMeloArray, "#ff00ff", "#ffb3b3", "#ff00ff"]
+
+]
+
+
+let ballRadius = 12;
 let pegCount = 6;
 let maximumBalls = 1;
 let ballEveryNFrames = 1;
@@ -78,7 +83,8 @@ function setup() {
 		bodyB = event.source.pairs.list[event.source.pairs.list.length-1].bodyB
     // bodyB.soundfile.play();
     console.log(bodyB );
-    soundArray[bodyB.label].play();
+    soundArray = themes[currentTheme][0];
+    soundArray[bodyB.label - 1].play();
 	});
 
 
@@ -86,11 +92,14 @@ function setup() {
 
   // --------------- SETUP SLIDERS  ----------------------
 
+
 	gravitySlider = createSlider(-1, 1, 0, .1);
-	gravitySlider.position(windowWidth/1.2, windowHeight/1.2);
+	gravitySlider.position(windowWidth/1.3, windowHeight/5);
 
 	rotationSlider = createSlider(.0005, .05, .01, .001);
-	rotationSlider.position(windowWidth/1.2, windowHeight/1.1)
+  rotationSlider.addClass("sliderClass");
+	rotationSlider.position(windowWidth/1.2, windowHeight/5)
+
 
 	// ----------------- HEXAGON GEOMETRY -----------------
 
@@ -122,70 +131,91 @@ function setup() {
 
   // ------------ Create Buttons --------------------
 
-	button1 = createButton("1");
-	button1.position(210, 65);
+  buttonPadding = 50;
+
+	button1 = createButton("I");
+	button1.position(240, buttonPadding);
 	button1.mousePressed(addCircle.bind(this, 1));
 
-	button2 = createButton("2")
-	button2.position(210, 85);
+	button2 = createButton("II");
+	button2.position(340, buttonPadding*2);
 	button2.mousePressed(addCircle.bind(this, 2));
 
-	button3 = createButton("3")
-	button3.position(210, 105);
+	button3 = createButton("III");
+	button3.position(240, buttonPadding*3);
 	button3.mousePressed(addCircle.bind(this, 3));
 
-	button4 = createButton("4")
-	button4.position(210, 125);
+	button4 = createButton("IV");
+	button4.position(340, buttonPadding*4);
 	button4.mousePressed(addCircle.bind(this, 4));
 
-	button5 = createButton("5")
-	button5.position(210, 145);
+	button5 = createButton("V");
+	button5.position(240, buttonPadding*5);
 	button5.mousePressed(addCircle.bind(this, 5));
 
-	button6 = createButton("6")
-	button6.position(210, 165);
+	button6 = createButton("VI");
+	button6.position(340, buttonPadding*6);
 	button6.mousePressed(addCircle.bind(this, 6));
 
-	button7 = createButton("7")
-	button7.position(210, 185);
+	button7 = createButton("VII");
+	button7.position(240, buttonPadding*7);
 	button7.mousePressed(addCircle.bind(this, 7));
 
-	button8 = createButton("8")
-	button8.position(210, 205);
+	button8 = createButton("VIII");
+	button8.position(340, buttonPadding*8);
 	button8.mousePressed(addCircle.bind(this, 8));
 
-	button9 = createButton("9")
-	button9.position(210, 225);
+	button9 = createButton("IX");
+	button9.position(240, buttonPadding*9);
 	button9.mousePressed(addCircle.bind(this, 9));
 
-	button10 = createButton("10")
-	button10.position(210, 245);
+	button10 = createButton("X");
+	button10.position(340, buttonPadding*10);
 	button10.mousePressed(addCircle.bind(this, 10));
 
-  button11 = createButton("11")
-  button11.position(210, 265);
+  button11 = createButton("XI");
+  button11.position(240, buttonPadding*11);
   button11.mousePressed(addCircle.bind(this, 11));
 
-  button12 = createButton("12")
-  button12.position(210, 285);
+  button12 = createButton("XII");
+  button12.position(340, buttonPadding*12);
   button12.mousePressed(addCircle.bind(this, 12));
 
-  button13 = createButton("13")
-  button13.position(210, 305);
+  button13 = createButton("XIII");
+  button13.position(240, buttonPadding*13);
   button13.mousePressed(addCircle.bind(this, 13));
 
-  button14 = createButton("14")
-  button14.position(210, 325);
+  button14 = createButton("XIV");
+  button14.position(340, buttonPadding*14);
   button14.mousePressed(addCircle.bind(this, 14));
 
-  button15 = createButton("15")
-  button15.position(210, 345);
+  button15 = createButton("XV");
+  button15.position(240, buttonPadding*15);
   button15.mousePressed(addCircle.bind(this, 15));
 
-  button16 = createButton("16")
-  button16.position(210, 365);
+  button16 = createButton("XVI");
+  button16.position(340, buttonPadding*16);
   button16.mousePressed(addCircle.bind(this, 16));
 
+// ------------- THEME BUTTONS ----------------
+
+  themeButton1 = createButton("");
+  themeButton1.position(1380, 70);
+  themeButton1.mousePressed(changeTheme.bind(this, 0));
+  themeButton2 = createButton("");
+  themeButton2.position(1480, 70);
+  themeButton2.mousePressed(changeTheme.bind(this, 1));
+  themeButton3 = createButton("");
+  themeButton3.position(1580, 70);
+  themeButton3.mousePressed(changeTheme.bind(this, 2));
+  themeButton4 = createButton("");
+  themeButton4.position(1680, 70);
+  themeButton4.mousePressed(changeTheme.bind(this, 3));
+
+}
+
+function changeTheme(themeNumber) {
+  currentTheme = themeNumber;
 }
 
 
@@ -245,8 +275,8 @@ function draw() {
 
   // #0099ff light blue
   // #47d147 green
-
-	background("#47d147");
+  currentBg = themes[currentTheme][1];
+	background(currentBg);
 
 	const rotation = rotationSlider.value();
 
@@ -261,6 +291,8 @@ function draw() {
 
 	translate(width / 2, height / 2);
 
+  currentBodyColor = themes[currentTheme][2];
+
 	bodies.forEach((n, i) => {
 
 		let render = n.render;
@@ -271,7 +303,8 @@ function draw() {
     // #660066 purple
     // #000066 dark blue
 
-		fill("#660066");
+
+		fill(currentBodyColor);
 		stroke(render.strokeStyle);
 		strokeWeight(render.lineWidth);
 		if(['peg','ball'].includes(n.label)) {
@@ -288,6 +321,16 @@ function draw() {
 			removeBody(n);
 	  	}
 	});
+
+  $("button").css({
+    "color": currentBg,
+    "background-color": currentBodyColor
+  });
+
+  $(".slider-style").html(`<style>input[type=range]::-webkit-slider-runnable-track, input[type=range]:focus::-webkit-slider-runnable-track {background: ${currentBodyColor};}</style>`);
+
+
+
 }
 
 

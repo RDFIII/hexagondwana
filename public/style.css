@@ -1,0 +1,44 @@
+button {
+  border: none;
+  height: 46px;
+  width: 46px;
+  border-radius: 23px;
+  outline: none;
+  font-size: 16px;
+  font-style: arial;
+  font-weight: bold;
+}
+
+button:hover {
+  transition: 500ms;
+  background-color: #990099;
+}
+
+input[type=range]{
+    -webkit-appearance: slider-vertical;
+    height: 600px;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 30px;
+    background: #660066;
+    border: none;
+    border-radius: 3px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 16px;
+    width: 16px;
+    color: "white";
+    margin-top: -4px;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #660066;
+}
